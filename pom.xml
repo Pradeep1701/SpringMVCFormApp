@@ -18,7 +18,7 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 	</properties>
-
+	
 	<dependencies>
 		<!-- JUnit 5 (modern version) -->
 		<dependency>
