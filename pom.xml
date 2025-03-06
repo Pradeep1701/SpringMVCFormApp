@@ -7,35 +7,80 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SpringMVCFormApp</name>
 	<url>http://maven.apache.org</url>
+
+	<!-- Define properties for versions -->
+	<properties>
+		<java.version>17</java.version> <!-- Use your desired Java version (e.g., 8, 11, 17) -->
+		<spring.version>5.3.30</spring.version> <!-- Use the latest Spring 5.x version -->
+		<junit.version>5.10.0</junit.version> <!-- Use JUnit 5 -->
+		<jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version> <!-- Use Jakarta Servlet API -->
+		<jakarta.servlet.jsp-api.version>3.1.0</jakarta.servlet.jsp-api.version> <!-- Use Jakarta JSP API -->
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+	</properties>
+
 	<dependencies>
+		<!-- JUnit 5 (modern version) -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- Spring MVC Dependency -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.3.6.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
-		<!-- Servlet dependency -->
+		<!-- Jakarta Servlet API (modern version) -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>${jakarta.servlet-api.version}</version>
+			<scope>provided</scope> <!-- Provided by the servlet container (e.g., Tomcat 10+) -->
 		</dependency>
 
-		
+		<!-- Jakarta JSP API (modern version) -->
 		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>javax.servlet.jsp-api</artifactId>
-			<version>2.3.1</version>
+			<groupId>jakarta.servlet.jsp</groupId>
+			<artifactId>jakarta.servlet.jsp-api</artifactId>
+			<version>${jakarta.servlet.jsp-api.version}</version>
+			<scope>provided</scope> <!-- Provided by the servlet container (e.g., Tomcat 10+) -->
 		</dependency>
 	</dependencies>
+
 	<build>
 		<finalName>SpringFormApp</finalName>
+		<plugins>
+			<!-- Maven Compiler Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+			<!-- Maven War Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.2</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml> <!-- Required for Servlet 3.0+ -->
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 </project>
